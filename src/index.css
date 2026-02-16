@@ -1,0 +1,191 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Reset ──────────────────────────────────────────────── */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 0px;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: #0a0a0c;
+  color: #c5c9d4;
+  overflow-x: hidden;
+}
+
+/* ── Scrollbar ──────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #0a0a0c; }
+::-webkit-scrollbar-thumb { background: #2a2a2f; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #3d3f4e; }
+
+/* ── Selection ──────────────────────────────────────────── */
+::selection {
+  background: rgba(200, 200, 200, 0.15);
+  color: #fff;
+}
+
+/* ── Spotlight cone ──────────────────────────────────────── */
+.spotlight {
+  position: absolute;
+  top: -300px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 900px;
+  height: 1100px;
+  background: conic-gradient(
+    from 180deg at 50% 0%,
+    transparent 38%,
+    rgba(180, 180, 200, 0.04) 42%,
+    rgba(200, 200, 220, 0.10) 46%,
+    rgba(230, 230, 245, 0.18) 48.5%,
+    rgba(255, 255, 255, 0.25) 50%,
+    rgba(230, 230, 245, 0.18) 51.5%,
+    rgba(200, 200, 220, 0.10) 54%,
+    rgba(180, 180, 200, 0.04) 58%,
+    transparent 62%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+.spotlight::after {
+  content: '';
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0.08) 40%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(30px);
+}
+
+/* Secondary ambient glow under spotlight */
+.spotlight::before {
+  content: '';
+  position: absolute;
+  top: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 500px;
+  height: 400px;
+  background: radial-gradient(ellipse, rgba(200,200,220,0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* ── Metallic / chrome text gradient ────────────────────── */
+.text-metallic {
+  background: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    #d4d4d8 30%,
+    #71717a 60%,
+    #52525b 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-metallic-light {
+  background: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    #e4e4e7 40%,
+    #a1a1aa 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ── Glass card ─────────────────────────────────────────── */
+@layer utilities {
+  .glass {
+    background: rgba(20, 20, 24, 0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .glass-darker {
+    background: rgba(15, 15, 18, 0.8);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+  }
+
+  .section-padding {
+    @apply py-24 md:py-32 lg:py-40 px-5 sm:px-8 lg:px-12;
+  }
+
+  .hover-lift {
+    @apply transition-all duration-500 ease-out;
+  }
+  .hover-lift:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+  }
+}
+
+/* ── Rotating circular text ─────────────────────────────── */
+@keyframes rotateBadge {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.rotate-badge {
+  animation: rotateBadge 12s linear infinite;
+}
+
+/* ── Subtle grid bg ─────────────────────────────────────── */
+.bg-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+  background-size: 80px 80px;
+}
+
+/* ── Horizontal divider line ────────────────────────────── */
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+}
+
+/* ── Loading screen metallic text ───────────────────────── */
+.text-metallic-load {
+  background: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    #e4e4e7 25%,
+    #a1a1aa 55%,
+    #71717a 80%,
+    #52525b 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ── Project image container ────────────────────────────── */
+.project-img-wrap {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1rem;
+}
+.project-img-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 50%, rgba(10,10,12,0.8) 100%);
+  pointer-events: none;
+}
