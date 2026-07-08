@@ -30,6 +30,80 @@ export default function Hero() {
       id="hero"
       className="relative min-h-screen flex flex-col justify-end pb-16 sm:pb-20 lg:pb-24 overflow-hidden bg-dark-900"
     >
+      {/* Lightning effect background */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* Lightning bolt 1 */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ 
+            opacity: [0, 0.3, 0, 0.4, 0],
+          }}
+          transition={{ 
+            duration: 0.3,
+            repeat: Infinity,
+            repeatDelay: 4,
+            delay: 1
+          }}
+          className="absolute top-0 left-1/4 w-1 h-full bg-gradient-to-b from-blue-400/60 via-purple-500/40 to-transparent"
+          style={{
+            filter: 'blur(8px)',
+            transform: 'skewX(-15deg)',
+          }}
+        />
+        
+        {/* Lightning bolt 2 */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ 
+            opacity: [0, 0.4, 0, 0.3, 0],
+          }}
+          transition={{ 
+            duration: 0.3,
+            repeat: Infinity,
+            repeatDelay: 5,
+            delay: 2.5
+          }}
+          className="absolute top-0 right-1/3 w-1 h-full bg-gradient-to-b from-cyan-400/60 via-blue-500/40 to-transparent"
+          style={{
+            filter: 'blur(8px)',
+            transform: 'skewX(20deg)',
+          }}
+        />
+
+        {/* Lightning bolt 3 */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ 
+            opacity: [0, 0.35, 0],
+          }}
+          transition={{ 
+            duration: 0.2,
+            repeat: Infinity,
+            repeatDelay: 6,
+            delay: 4
+          }}
+          className="absolute top-0 right-1/4 w-1 h-full bg-gradient-to-b from-purple-400/60 via-pink-500/40 to-transparent"
+          style={{
+            filter: 'blur(8px)',
+            transform: 'skewX(-25deg)',
+          }}
+        />
+
+        {/* Electric glow effect */}
+        <motion.div
+          animate={{ 
+            opacity: [0.1, 0.2, 0.1],
+            scale: [1, 1.1, 1]
+          }}
+          transition={{ 
+            duration: 3,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+          className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[500px] h-[500px] rounded-full bg-blue-500/10 blur-3xl"
+        />
+      </div>
+
       {/* Spotlight cone */}
       <div className="spotlight" />
 
